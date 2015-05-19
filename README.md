@@ -1,4 +1,4 @@
-RubyUbuntuSimpleApp
+RubyUbuntuSimpleApp w/ Provisioning
 ===================
 
 A simple Sinatra app with a distelli-spec.yml file that describes how this app should be deployed using the Distelli platform.
