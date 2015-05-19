@@ -1,0 +1,52 @@
+<username>/RubyUbuntuPSimpleApp:
+  # This Basic Distelli Manifest assumes the following
+  # has been provisioned on the destination deploy server:
+  #
+  # OS: Ubuntu
+  #
+
+  Env:
+    - PORT: 8003
+    - STAGE: production
+
+  PreInstall:
+    #
+    # Check to see if rvm is already installed
+    #
+    - if [ -a ~/.rvm/scripts/rvm ]; then
+    #
+    #   It is already installed
+    #
+    -   echo "rvm exists"
+    #
+    - else
+    #
+    #   Install RVM from rvm.io
+    #
+    -   echo "rvm does not exist. Installing..."
+    -   gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+    -   curl -sSL https://get.rvm.io | bash -s stable --ruby
+    - fi
+    - source ~/.rvm/scripts/rvm
+    #
+    # If ruby 1.9.3 is already installed, next command won't actually re-install, so OK.
+    #
+    - rvm install ruby-1.9.3
+    - rvm use 1.9.3
+    - gem install bundle
+
+  Exec:
+    - source ~/.rvm/scripts/rvm
+    - rvm use 1.9.3
+    - exec ./bundle/bin/thin start -p $PORT -e $STAGE
+
+  PostInstall:
+    - source ~/.rvm/scripts/rvm
+    - rvm use 1.9.3
+    - bundle install --binstubs $DISTELLI_APPHOME/bundle/bin --standalone --path $DISTELLI_APPHOME/bundle/lib
+
+  PkgInclude:
+    - lib/simplerubyapp/*.rb
+    - Gemfile
+    - config.ru
+    - SimpleRubyApp.gemspec
