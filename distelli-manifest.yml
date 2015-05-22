@@ -12,12 +12,13 @@ bmcgehee/RubyUbuntuPSimpleApp:
   PreInstall:
     #
     # Check to see if curl is installed
-    - VARCURL=`which curl`
+    - VARCURL=`which curl || true`
     - if [ "$VARCURL" ]; then
     -   echo "curl already installed, moving on."
     - else
     -   echo "Installing curl for Ubuntu:"
-    -   echo " sudo apt-get -y install curl"
+    -   echo " - sudo apt-get -y install curl"
+    -   sudo apt-get -y update
     -   sudo apt-get -y install curl
     - fi
     # 
