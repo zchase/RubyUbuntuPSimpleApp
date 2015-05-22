@@ -1,4 +1,4 @@
-<username>/RubyUbuntuPSimpleApp:
+bmcgehee/RubyUbuntuPSimpleApp:
   # This Basic Distelli Manifest assumes the following
   # has been provisioned on the destination deploy server:
   #
@@ -11,6 +11,16 @@
 
   PreInstall:
     #
+    # Check to see if curl is installed
+    - VARCURL=`which curl`
+    - if [ "$VARCURL" ]; then
+    -   echo "curl already installed, moving on."
+    - else
+    -   echo "Installing curl for Ubuntu:"
+    -   echo " sudo apt-get -y install curl"
+    -   sudo apt-get -y install curl
+    - fi
+    # 
     # Check to see if rvm is already installed
     #
     - if [ -a ~/.rvm/scripts/rvm ]; then
