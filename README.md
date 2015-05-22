@@ -1,9 +1,13 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 RubyUbuntuSimpleApp
 =======
 RubyUbuntuSimpleApp w/ Provisioning
 >>>>>>> 6de4edb5c24ec4830e2143999b7fc0a5e9d98c4e
+=======
+RubyUbuntuSimpleApp
+>>>>>>> parent of 6de4edb... Update README.md
 =======
 RubyUbuntuSimpleApp
 >>>>>>> parent of 6de4edb... Update README.md
